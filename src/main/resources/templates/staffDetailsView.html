@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link th:href="@{/staffDetails.css}" rel="stylesheet">
+</head>
+<body>
+    <h2> <a th:href="@{/}">Staff Details</a> </h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Title</th>
+            <th>Phone</th>
+            <th>Salary</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="staff: ${allStaff}">
+            <td th:text="${staff.name}"></td>
+            <td th:text="${staff.age}"></td>
+            <td th:text="${staff.title}"></td>
+            <td th:text="${staff.phone}"></td>
+            <td th:text="${staff.salary}"></td>
+            <td>
+                <a role="button" class="edit-btn" th:href="@{${STAFF_DETAILS}(id=${staff.id})}">Edit</a>
+                <a role="button" class="delete-btn" th:href="@{/deleteStaff(id = ${staff.id})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+
+    <form method="post" th:object="${staff}" th:action="@{/addNewStaff}">
+        <input type="hidden" name="id" th:field="*{id}">
+
+        <label for="name">Name:</label>
+        <span class="error" th:errors="*{name}"></span>
+        <input type="text" name="name" placeholder="Enter name" th:field="*{name}"><br>
+
+        <label for="age">Age:</label>
+        <span class="error" th:errors="*{age}"></span>
+        <input type="number" name="age" placeholder="Enter age" th:field="*{age}"><br>
+
+        <label for="title">Title:</label>
+        <span class="error" th:errors="*{title}"></span>
+        <input type="text" name="title" placeholder="Enter title" th:field="*{title}"><br>
+
+        <label for="phone">Phone:</label>
+        <span class="error" th:errors="*{phone}"></span>
+        <input type="text" name="phone" placeholder="Enter phone" th:field="*{phone}"><br>
+
+        <label for="salary">Salary:</label>
+        <span class="error" th:errors="*{salary}"></span>
+        <input type="number" name="salary" placeholder="Enter salary" th:field="*{salary}"><br>
+
+        <input type="submit" th:value="Submit">
+    </form>
+</body>
+</html>
