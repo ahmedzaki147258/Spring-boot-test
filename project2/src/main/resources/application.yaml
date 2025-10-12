@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: patients
+  jpa:
+    show-sql: true
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        "[format_sql]": true
+
+  sql:
+    init:
+      mode: always
+      continue-on-error: true
+      
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring-boot-test
+    username: root
+    password:
+    
+server:
+  port: 8000
+  servlet:
+    contextPath: /api
+  
